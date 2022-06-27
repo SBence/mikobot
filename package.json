@@ -2,9 +2,11 @@
   "name": "mikobot",
   "version": "0.1.0",
   "description": "",
+  "type": "module",
   "main": "./src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check": "npx prettier --check .",
+    "format": "npx prettier --write ."
   },
   "repository": {
     "type": "git",
