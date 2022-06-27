@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/SBence/mikobot/issues"
   },
-  "homepage": "https://github.com/SBence/mikobot#readme"
+  "homepage": "https://github.com/SBence/mikobot#readme",
+  "devDependencies": {
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.7.1"
+  }
 }
