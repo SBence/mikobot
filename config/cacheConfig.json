@@ -1,0 +1,4 @@
+{
+  "cacheOnEveryMessage": 500,
+  "maxCached": 5000
+}
