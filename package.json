@@ -29,7 +29,7 @@
     "discord.js": "^13.8.1",
     "dotenv": "^16.0.1",
     "markov-strings": "^3.0.1",
-    "utf-8-validate": "^5.0.9",
+    "utf-8-validate": "^6.0.2",
     "zlib-sync": "^0.1.7"
   }
 }
