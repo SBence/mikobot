@@ -3,7 +3,7 @@ import { Collection } from "discord.js";
 export default async function fetchMessages(
   channel,
   limit,
-  before = undefined
+  before = undefined,
 ) {
   if (!channel) throw new Error(`Expected channel, got ${typeof channel}.`);
   if (limit <= 100) return channel.messages.fetch({ limit });

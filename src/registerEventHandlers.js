@@ -37,7 +37,7 @@ export default function registerEventHandlers(client) {
     if (!guildStore[message.guildId][message.channelId]) {
       guildStore[message.guildId][message.channelId] = new SpeakChannel(
         message.channel,
-        cacheConfig
+        cacheConfig,
       );
     }
 

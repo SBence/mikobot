@@ -7,7 +7,7 @@ export default function replyConditionsMet(message, bot) {
   if (
     !Math.floor(
       (Math.random() * 1000) /
-        guildStore[message.guildId][message.channelId].chance
+        guildStore[message.guildId][message.channelId].chance,
     )
   )
     return "random";

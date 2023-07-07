@@ -34,8 +34,8 @@ export default class SpeakChannel {
         ...(await fetchMessages(
           this.discordChannel,
           atLeast - this.#messageCache.length,
-          this.#messageCache[0].id
-        ))
+          this.#messageCache[0].id,
+        )),
       );
     } else if (this.#messageCache.length < this.maxCached) {
       this.#messageCache.unshift(
@@ -43,10 +43,10 @@ export default class SpeakChannel {
           this.discordChannel,
           Math.min(
             this.cacheOnEveryMessage,
-            this.maxCached - this.#messageCache.length
+            this.maxCached - this.#messageCache.length,
           ),
-          this.#messageCache[0].id
-        ))
+          this.#messageCache[0].id,
+        )),
       );
     }
     return this.#messageCache

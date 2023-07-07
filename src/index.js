@@ -15,7 +15,7 @@ try {
 } catch (e) {
   if (e["code"] === "TOKEN_INVALID") {
     console.error(
-      '⚠️ Invalid token\nMake sure that there is a "DISCORD_TOKEN" entry with the token of the bot application in the ".env" file.\nTo check the applications in your Discord account go to the following page:\nhttps://discord.com/developers/applications'
+      '⚠️ Invalid token\nMake sure that there is a "DISCORD_TOKEN" entry with the token of the bot application in the ".env" file.\nTo check the applications in your Discord account go to the following page:\nhttps://discord.com/developers/applications',
     );
   } else {
     console.error("⚠️ Login error");

@@ -1,4 +1,5 @@
 # MikoBot
+
 ## A Discord bot to generate messages using Markov chains
 
 ## Installation
@@ -17,7 +18,7 @@ npm install
 DISCORD_TOKEN=<insert your Discord bot token here>
 ```
 
-*For more information on how to create a bot application, [see here](https://discord.com/developers/docs/getting-started#creating-an-app).*
+_For more information on how to create a bot application, [see here](https://discord.com/developers/docs/getting-started#creating-an-app)._
 
 3. Run the application:
 
@@ -31,9 +32,9 @@ node src/index.js
 
 For more information on how to do so, [see here](https://discord.com/developers/docs/getting-started#adding-scopes-and-permissions).
 
-On the *OAuth2 URL Generator* page, make sure to check **bot** under *Scopes* and check **Read Messages/View Channels** and **Send Messages** under *Bot Permissions*.
+On the _OAuth2 URL Generator_ page, make sure to check **bot** under _Scopes_ and check **Read Messages/View Channels** and **Send Messages** under _Bot Permissions_.
 
-To generate a message, **@mention** the bot user. *Note that by default the bot also sends generated messages when the number of messages sent by users reaches a certain amount since the bot last sent a message.*
+To generate a message, **@mention** the bot user. _Note that by default the bot also sends generated messages when the number of messages sent by users reaches a certain amount since the bot last sent a message._
 
 ## Bot configuration
 

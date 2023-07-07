@@ -7,6 +7,6 @@ export default async function updatePresence(client) {
   });
 
   console.log(
-    `ℹ️ Activity set to ${presence.activities[0].type} ${presence.activities[0].name}`
+    `ℹ️ Activity set to ${presence.activities[0].type} ${presence.activities[0].name}`,
   );
 }

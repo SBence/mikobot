@@ -16,11 +16,11 @@ export default async function onMessage(message, bot, cacheConfig) {
   let messages;
   if (conditions === "random") {
     messages = await guildStore[message.guildId][message.channelId].getMessages(
-      cacheConfig.maxCached
+      cacheConfig.maxCached,
     );
   } else {
     messages = await guildStore[message.guildId][message.channelId].getMessages(
-      cacheConfig.cacheOnEveryMessage
+      cacheConfig.cacheOnEveryMessage,
     );
   }
 
