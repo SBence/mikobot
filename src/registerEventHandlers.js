@@ -3,30 +3,34 @@ import onMessage from "./events/onMessage.js";
 import updatePresence from "./events/updatePresence.js";
 import guildStore from "./stores/guildStore.js";
 import loadJSON from "./events/utils/loadJSON.js";
+import { ChannelType, Events, PermissionsBitField } from "discord.js";
 const cacheConfig = loadJSON("config/cacheConfig.json");
 
 export default function registerEventHandlers(client) {
-  client.once("ready", async () => {
+  client.once(Events.ClientReady, async () => {
     console.log(`✅ Logged in as ${client.user.tag}`);
     await updatePresence(client);
   });
 
-  client.on("guildCreate", async (guild) => {
+  client.on(Events.GuildCreate, async (guild) => {
     guildStore[guild.id] = {};
     await updatePresence(client);
   });
 
-  client.on("guildDelete", async (guild) => {
+  client.on(Events.GuildDelete, async (guild) => {
     delete guildStore[guild.id];
     await updatePresence(client);
   });
 
-  client.on("messageCreate", async (message) => {
+  client.on(Events.MessageCreate, async (message) => {
     if (
-      message.channel.type !== "GUILD_TEXT" ||
+      message.channel.type !== ChannelType.GuildText ||
       message.author.bot ||
       !message.guild.available ||
-      !message.channel.permissionsFor(client.user).has("SEND_MESSAGES")
+      !message.content ||
+      !message.channel
+        .permissionsFor(client.user)
+        .has(PermissionsBitField.Flags.SendMessages)
     )
       return;
 

@@ -24,7 +24,7 @@ export default class SpeakChannel {
   }
 
   cacheMessage(message) {
-    if (!message.author.bot) this.#messageCache.push(message);
+    this.#messageCache.push(message);
     this.#messageCache.splice(0, this.#messageCache.length - this.maxCached);
   }
 
@@ -49,15 +49,20 @@ export default class SpeakChannel {
         )),
       );
     }
-    return this.#messageCache
-      .filter((msg) => !msg.author.bot)
-      .map((msg) => msg.content);
+    return (
+      this.#messageCache
+        // .filter((msg) => !msg.author.bot)
+        .map((msg) => msg.content)
+    );
   }
 }
 
 async function fetchMessages(channel, limit, before = undefined) {
   if (!channel) throw new Error(`Expected channel, got ${typeof channel}.`);
-  if (limit <= 100) return channel.messages.fetch({ limit });
+  if (limit <= 100)
+    return (await channel.messages.fetch({ limit, before }))
+      .filter((msg) => msg && msg.content && msg.author && !msg.author.bot)
+      .toJSON();
 
   let collection = new Collection();
   let lastId = before;
@@ -70,7 +75,9 @@ async function fetchMessages(channel, limit, before = undefined) {
 
     if (lastId) options.before = lastId;
 
-    const messages = await channel.messages.fetch(options);
+    const messages = (await channel.messages.fetch(options)).filter(
+      (msg) => msg && msg.content && msg.author && !msg.author.bot,
+    );
 
     if (!messages.last()) break;
 

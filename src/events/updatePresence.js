@@ -1,9 +1,10 @@
+import { ActivityType } from "discord.js";
 import plural from "./utils/updatePresence/plural.js";
 
 export default async function updatePresence(client) {
   const guildCount = (await client.guilds.fetch()).toJSON().length;
   const presence = client.user.setActivity(plural(guildCount, "server"), {
-    type: "WATCHING",
+    type: ActivityType.Watching,
   });
 
   console.log(
