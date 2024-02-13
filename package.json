@@ -1,27 +1,29 @@
 {
   "name": "mikobot",
   "version": "0.1.0",
-  "description": "",
   "type": "module",
-  "main": "./src/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "check": "npx prettier --check .",
-    "format": "npx prettier --write ."
+    "start": "tsc && node dist/index.js",
+    "formatting:check": "npx prettier --check .",
+    "formatting:apply": "npx prettier --write ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SBence/mikobot.git"
   },
-  "author": "",
-  "license": "",
   "bugs": {
     "url": "https://github.com/SBence/mikobot/issues"
   },
   "homepage": "https://github.com/SBence/mikobot#readme",
   "devDependencies": {
+    "@types/node": "^20.10.8",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
     "eslint": "^8.18.0",
     "eslint-config-prettier": "^9.0.0",
-    "prettier": "^3.0.0"
+    "prettier": "^3.0.0",
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "bufferutil": "^4.0.8",

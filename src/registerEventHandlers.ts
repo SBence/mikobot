@@ -2,13 +2,16 @@ import SpeakChannel from "./classes/SpeakChannel.js";
 import onMessage from "./events/onMessage.js";
 import updatePresence from "./events/updatePresence.js";
 import guildStore from "./stores/guildStore.js";
-import loadJSON from "./events/utils/loadJSON.js";
-import { ChannelType, Events, PermissionsBitField } from "discord.js";
-const cacheConfig = loadJSON("config/cacheConfig.json");
+import { ChannelType, Client, Events, PermissionsBitField } from "discord.js";
+import cacheConfig from "./config/cacheConfig.json" with { type: "json" };
 
-export default function registerEventHandlers(client) {
+export default function registerEventHandlers(client: Client) {
   client.once(Events.ClientReady, async () => {
-    console.log(`✅ Logged in as ${client.user.tag}`);
+    if (client.user) {
+      console.log(`✅ Logged in as ${client.user.tag}`);
+    } else {
+      console.log("✅ Logged in");
+    }
     await updatePresence(client);
   });
 
@@ -24,13 +27,22 @@ export default function registerEventHandlers(client) {
 
   client.on(Events.MessageCreate, async (message) => {
     if (
+      !client.user ||
+      !message.guild ||
+      !message.guildId ||
+      message.channel.type === ChannelType.DM
+    )
+      return;
+
+    const botPermissionsInChannel = message.channel.permissionsFor(client.user);
+    if (!botPermissionsInChannel) return;
+
+    if (
       message.channel.type !== ChannelType.GuildText ||
       message.author.bot ||
       !message.guild.available ||
       !message.content ||
-      !message.channel
-        .permissionsFor(client.user)
-        .has(PermissionsBitField.Flags.SendMessages)
+      !botPermissionsInChannel.has(PermissionsBitField.Flags.SendMessages)
     )
       return;
 

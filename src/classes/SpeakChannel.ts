@@ -1,11 +1,21 @@
-import { Collection } from "discord.js";
+import { Collection, Message, Snowflake, TextBasedChannel } from "discord.js";
+import { CacheConfig } from "../types/CacheConfig.js";
+
+interface FetchMessageOptions {
+  limit: number | undefined;
+  before: Snowflake | undefined;
+}
 
 export default class SpeakChannel {
   writingMessage = false;
   #chance = 1;
-  #messageCache = [];
+  #messageCache: Message[] = [];
 
-  constructor(discordChannel, cacheConfig) {
+  discordChannel;
+  cacheOnEveryMessage;
+  maxCached;
+
+  constructor(discordChannel: TextBasedChannel, cacheConfig: CacheConfig) {
     this.discordChannel = discordChannel;
     this.cacheOnEveryMessage = cacheConfig.cacheOnEveryMessage;
     this.maxCached = cacheConfig.maxCached;
@@ -23,12 +33,12 @@ export default class SpeakChannel {
     this.#chance = 0;
   }
 
-  cacheMessage(message) {
+  cacheMessage(message: Message) {
     this.#messageCache.push(message);
     this.#messageCache.splice(0, this.#messageCache.length - this.maxCached);
   }
 
-  async getMessages(atLeast) {
+  async getMessages(atLeast: number) {
     if (this.#messageCache.length < atLeast) {
       this.#messageCache.unshift(
         ...(await fetchMessages(
@@ -57,16 +67,19 @@ export default class SpeakChannel {
   }
 }
 
-async function fetchMessages(channel, limit, before = undefined) {
-  if (!channel) throw new Error(`Expected channel, got ${typeof channel}.`);
+async function fetchMessages(
+  channel: TextBasedChannel,
+  limit: number,
+  before: Snowflake | undefined,
+) {
   if (limit <= 100)
     return (await channel.messages.fetch({ limit, before }))
       .filter((msg) => msg && msg.content && msg.author && !msg.author.bot)
       .toJSON();
 
-  let collection = new Collection();
+  let collection = new Collection<string, Message>();
   let lastId = before;
-  const options = {};
+  const options: FetchMessageOptions = { limit: undefined, before: undefined };
   let remaining = limit;
 
   while (remaining > 0) {
@@ -82,7 +95,7 @@ async function fetchMessages(channel, limit, before = undefined) {
     if (!messages.last()) break;
 
     collection = collection.concat(messages);
-    lastId = messages.last().id;
+    lastId = messages.last()?.id;
   }
 
   return collection.toJSON();

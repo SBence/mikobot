@@ -1,6 +1,8 @@
-const chainConfig = {
+import { MarkovGenerateOptions, MarkovResult } from "markov-strings";
+
+const chainConfig: MarkovGenerateOptions = {
   maxTries: 4096,
-  filter: (result) => {
+  filter: (result: MarkovResult) => {
     return (
       result.score >= 7 &&
       !result.string.includes("@") &&

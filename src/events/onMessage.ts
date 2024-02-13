@@ -1,20 +1,30 @@
 import MarkovChain from "markov-strings";
-import chainConfig from "../../config/chainConfig.js";
+import chainConfig from "../config/chainConfig.js";
 import guildStore from "../stores/guildStore.js";
-import replyConditionsMet from "./utils/onMessage/replyConditionsMet.js";
+import replyConditionMet from "./utils/onMessage/replyConditionMet.js";
+import { CacheConfig } from "../types/CacheConfig.js";
+import { Client, Message } from "discord.js";
+import { ReplyCondition } from "../enums/ReplyCondition.js";
 
-export default async function onMessage(message, bot, cacheConfig) {
+export default async function onMessage(
+  message: Message,
+  bot: Client,
+  cacheConfig: CacheConfig,
+) {
+  if (!message.guildId) return;
+
   guildStore[message.guildId][message.channelId].cacheMessage(message);
 
-  const conditions = replyConditionsMet(message, bot);
-  if (!conditions) return;
+  const replyCondition = replyConditionMet(message, bot);
+  if (ReplyCondition.None) return;
 
-  if (conditions === "mention") message.channel.sendTyping();
+  if (replyCondition === ReplyCondition.Mention)
+    void message.channel.sendTyping();
   guildStore[message.guildId][message.channelId].writingMessage = true;
   guildStore[message.guildId][message.channelId].resetChance();
 
   let messages;
-  if (conditions === "random") {
+  if (replyCondition === ReplyCondition.Random) {
     messages = await guildStore[message.guildId][message.channelId].getMessages(
       cacheConfig.maxCached,
     );
