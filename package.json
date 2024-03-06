@@ -18,8 +18,8 @@
   "homepage": "https://github.com/SBence/mikobot#readme",
   "devDependencies": {
     "@types/node": "^20.10.8",
-    "@typescript-eslint/eslint-plugin": "^6.18.1",
-    "@typescript-eslint/parser": "^6.18.1",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
     "eslint": "^8.18.0",
     "eslint-config-prettier": "^9.0.0",
     "prettier": "^3.0.0",
