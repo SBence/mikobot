@@ -16,7 +16,7 @@ export default async function onMessage(
   guildStore[message.guildId][message.channelId].cacheMessage(message);
 
   const replyCondition = replyConditionMet(message, bot);
-  if (ReplyCondition.None) return;
+  if (replyCondition === ReplyCondition.None) return;
 
   if (replyCondition === ReplyCondition.Mention)
     void message.channel.sendTyping();
