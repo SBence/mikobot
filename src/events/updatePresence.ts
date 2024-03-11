@@ -1,6 +1,15 @@
 import { ActivityType, Client } from "discord.js";
 import plural from "./utils/updatePresence/plural.js";
 
+const activityTypes = [
+  "Playing",
+  "Streaming",
+  "Listening",
+  "Watching",
+  "Custom",
+  "Competing",
+];
+
 export default async function updatePresence(client: Client) {
   if (!client.user) {
     console.warn("⚠️ Could not set presence");
@@ -11,6 +20,6 @@ export default async function updatePresence(client: Client) {
     type: ActivityType.Watching,
   });
   console.log(
-    `ℹ️ Activity set to ${presence.activities[0].type} ${presence.activities[0].name}`,
+    `ℹ️ Activity set to: ${activityTypes[presence.activities[0].type]} ${presence.activities[0].name}`,
   );
 }
