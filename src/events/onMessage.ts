@@ -42,7 +42,7 @@ export default async function onMessage(
     generatedMessage = chain.generate(chainConfig);
     await message.channel.send(generatedMessage.string);
   } catch (error) {
-    console.error(error);
+    console.warn(error);
   } finally {
     guildStore[message.guildId][message.channelId].writingMessage = false;
   }
