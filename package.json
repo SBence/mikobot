@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/SBence/mikobot#readme",
   "devDependencies": {
-    "@types/node": "^20.14.13",
+    "@types/node": "^22.0.0",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.17.0",
     "eslint": "^8.18.0",
