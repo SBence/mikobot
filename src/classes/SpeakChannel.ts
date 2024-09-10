@@ -74,7 +74,7 @@ async function fetchMessages(
 ) {
   if (limit <= 100)
     return (await channel.messages.fetch({ limit, before }))
-      .filter((msg) => msg && msg.content && msg.author && !msg.author.bot)
+      .filter((msg) => msg.content && !msg.author.bot)
       .toJSON();
 
   let collection = new Collection<string, Message>();
@@ -89,7 +89,7 @@ async function fetchMessages(
     if (lastId) options.before = lastId;
 
     const messages = (await channel.messages.fetch(options)).filter(
-      (msg) => msg && msg.content && msg.author && !msg.author.bot,
+      (msg) => msg.content && !msg.author.bot,
     );
 
     if (!messages.last()) break;

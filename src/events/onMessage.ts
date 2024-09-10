@@ -1,17 +1,18 @@
+import { Client, Message, PartialGroupDMChannel } from "discord.js";
 import MarkovChain from "markov-strings";
 import chainConfig from "../config/chainConfig.js";
-import guildStore from "../stores/guildStore.js";
-import replyConditionMet from "./utils/onMessage/replyConditionMet.js";
-import { CacheConfig } from "../types/CacheConfig.js";
-import { Client, Message } from "discord.js";
 import { ReplyCondition } from "../enums/ReplyCondition.js";
+import guildStore from "../stores/guildStore.js";
+import { CacheConfig } from "../types/CacheConfig.js";
+import replyConditionMet from "./utils/onMessage/replyConditionMet.js";
 
 export default async function onMessage(
   message: Message,
   bot: Client,
   cacheConfig: CacheConfig,
 ) {
-  if (!message.guildId) return;
+  if (!message.guildId || message.channel instanceof PartialGroupDMChannel)
+    return;
 
   guildStore[message.guildId][message.channelId].cacheMessage(message);
 
@@ -40,10 +41,10 @@ export default async function onMessage(
   let generatedMessage;
   try {
     generatedMessage = chain.generate(chainConfig);
-    await message.channel.send(generatedMessage.string);
   } catch (error) {
-    console.warn(error);
-  } finally {
-    guildStore[message.guildId][message.channelId].writingMessage = false;
+    await message.channel.send("I'm at a loss for words. Literally.");
   }
+  if (generatedMessage) await message.channel.send(generatedMessage.string);
+
+  guildStore[message.guildId][message.channelId].writingMessage = false;
 }
