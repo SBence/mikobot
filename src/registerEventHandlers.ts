@@ -1,9 +1,9 @@
+import { ChannelType, Client, Events, PermissionsBitField } from "discord.js";
 import SpeakChannel from "./classes/SpeakChannel.js";
+import cacheConfig from "./config/cacheConfig.json" with { type: "json" };
 import onMessage from "./events/onMessage.js";
 import updatePresence from "./events/updatePresence.js";
 import guildStore from "./stores/guildStore.js";
-import { ChannelType, Client, Events, PermissionsBitField } from "discord.js";
-import cacheConfig from "./config/cacheConfig.json" with { type: "json" };
 
 export default function registerEventHandlers(client: Client) {
   client.once(Events.ClientReady, async () => {
@@ -46,17 +46,22 @@ export default function registerEventHandlers(client: Client) {
     )
       return;
 
+    /* eslint-disable @typescript-eslint/no-unnecessary-condition */
     if (!guildStore[message.guildId]) {
       guildStore[message.guildId] = {};
     }
-
     if (!guildStore[message.guildId][message.channelId]) {
       guildStore[message.guildId][message.channelId] = new SpeakChannel(
         message.channel,
         cacheConfig,
       );
     }
+    /* eslint-enable @typescript-eslint/no-unnecessary-condition */
 
-    await onMessage(message, client, cacheConfig);
+    try {
+      await onMessage(message, client, cacheConfig);
+    } catch (error) {
+      console.log(error);
+    }
   });
 }

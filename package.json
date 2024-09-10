@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "tsc && node dist/index.js",
-    "formatting:check": "npx prettier --check .",
-    "formatting:apply": "npx prettier --write ."
+    "formatting:check": "yarn prettier --check .",
+    "formatting:apply": "yarn prettier --write ."
   },
   "repository": {
     "type": "git",

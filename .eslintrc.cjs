@@ -22,5 +22,13 @@ module.exports = {
   rules: {
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/no-dynamic-delete": "off",
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        checksVoidReturn: {
+          arguments: false,
+        },
+      },
+    ],
   },
 };

@@ -1,5 +1,5 @@
-import "dotenv/config";
 import { Client, GatewayIntentBits } from "discord.js";
+import "dotenv/config";
 import registerEventHandlers from "./registerEventHandlers.js";
 
 const client = new Client({

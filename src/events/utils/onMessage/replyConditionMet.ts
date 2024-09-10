@@ -1,6 +1,6 @@
 import { Client, Message } from "discord.js";
-import guildStore from "../../../stores/guildStore.js";
 import { ReplyCondition } from "../../../enums/ReplyCondition.js";
+import guildStore from "../../../stores/guildStore.js";
 
 export default function replyConditionMet(message: Message, bot: Client) {
   if (
