@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "bufferutil": "^4.0.8",
-    "discord.js": "^14.14.1",
+    "discord.js": "^14.16.2",
     "dotenv": "^16.0.1",
     "markov-strings": "^3.0.1",
     "utf-8-validate": "^6.0.3",
