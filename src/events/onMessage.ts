@@ -41,7 +41,7 @@ export default async function onMessage(
   let generatedMessage;
   try {
     generatedMessage = chain.generate(chainConfig);
-  } catch (error) {
+  } catch {
     await message.channel.send("I'm at a loss for words. Literally.");
   }
   if (generatedMessage) await message.channel.send(generatedMessage.string);
