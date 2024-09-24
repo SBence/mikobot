@@ -1,8 +1,9 @@
-import { Client, Message, PartialGroupDMChannel } from "discord.js";
+import { Client, Message, TextChannel } from "discord.js";
 import MarkovChain from "markov-strings";
+import SpeakChannel from "../classes/SpeakChannel.js";
 import chainConfig from "../config/chainConfig.js";
 import { ReplyCondition } from "../enums/ReplyCondition.js";
-import guildStore from "../stores/guildStore.js";
+import { default as channelStore } from "../stores/guildStore.js";
 import { CacheConfig } from "../types/CacheConfig.js";
 import replyConditionMet from "./utils/onMessage/replyConditionMet.js";
 
@@ -11,28 +12,35 @@ export default async function onMessage(
   bot: Client,
   cacheConfig: CacheConfig,
 ) {
-  if (!message.guildId || message.channel instanceof PartialGroupDMChannel)
-    return;
+  if (!message.guildId || !(message.channel instanceof TextChannel)) return;
 
-  guildStore[message.guildId][message.channelId].cacheMessage(message);
+  let storeChannel = channelStore.get(message.channelId);
+  if (!channelStore.get(message.channelId)) {
+    const speakChannel = new SpeakChannel(message.channel, cacheConfig);
+    storeChannel = speakChannel;
+    channelStore.set(message.channelId, storeChannel);
+  }
+  if (!storeChannel) {
+    console.error(
+      `❌ Failed to add channel (ID: ${message.channelId}) to store`,
+    );
+    return;
+  }
+  storeChannel.cacheMessage(message);
 
   const replyCondition = replyConditionMet(message, bot);
   if (replyCondition === ReplyCondition.None) return;
 
   if (replyCondition === ReplyCondition.Mention)
     void message.channel.sendTyping();
-  guildStore[message.guildId][message.channelId].writingMessage = true;
-  guildStore[message.guildId][message.channelId].resetChance();
+  storeChannel.writingMessage = true;
+  storeChannel.resetChance();
 
   let messages;
   if (replyCondition === ReplyCondition.Random) {
-    messages = await guildStore[message.guildId][message.channelId].getMessages(
-      cacheConfig.maxCached,
-    );
+    messages = await storeChannel.getMessages(cacheConfig.maxCached);
   } else {
-    messages = await guildStore[message.guildId][message.channelId].getMessages(
-      cacheConfig.cacheOnEveryMessage,
-    );
+    messages = await storeChannel.getMessages(cacheConfig.cacheOnEveryMessage);
   }
 
   const chain = new MarkovChain.default({ stateSize: 2 });
@@ -46,5 +54,5 @@ export default async function onMessage(
   }
   if (generatedMessage) await message.channel.send(generatedMessage.string);
 
-  guildStore[message.guildId][message.channelId].writingMessage = false;
+  storeChannel.writingMessage = false;
 }
