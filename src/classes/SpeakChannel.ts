@@ -1,4 +1,10 @@
-import { Collection, Message, Snowflake, TextBasedChannel } from "discord.js";
+import {
+  Collection,
+  Message,
+  Snowflake,
+  TextBasedChannel,
+  TextChannel,
+} from "discord.js";
 import { CacheConfig } from "../types/CacheConfig.js";
 
 interface FetchMessageOptions {
@@ -15,7 +21,7 @@ export default class SpeakChannel {
   cacheOnEveryMessage;
   maxCached;
 
-  constructor(discordChannel: TextBasedChannel, cacheConfig: CacheConfig) {
+  constructor(discordChannel: TextChannel, cacheConfig: CacheConfig) {
     this.discordChannel = discordChannel;
     this.cacheOnEveryMessage = cacheConfig.cacheOnEveryMessage;
     this.maxCached = cacheConfig.maxCached;
@@ -27,6 +33,10 @@ export default class SpeakChannel {
 
   get chance() {
     return this.#chance++;
+  }
+
+  get guildId() {
+    return this.discordChannel.guildId;
   }
 
   resetChance() {

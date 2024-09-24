@@ -1,9 +1,8 @@
 import { ChannelType, Client, Events, PermissionsBitField } from "discord.js";
-import SpeakChannel from "./classes/SpeakChannel.js";
 import cacheConfig from "./config/cacheConfig.json" with { type: "json" };
 import onMessage from "./events/onMessage.js";
 import updatePresence from "./events/updatePresence.js";
-import guildStore from "./stores/guildStore.js";
+import channelStore from "./stores/guildStore.js";
 
 export default function registerEventHandlers(client: Client) {
   client.once(Events.ClientReady, async () => {
@@ -15,13 +14,14 @@ export default function registerEventHandlers(client: Client) {
     await updatePresence(client);
   });
 
-  client.on(Events.GuildCreate, async (guild) => {
-    guildStore[guild.id] = {};
+  client.on(Events.GuildCreate, async () => {
     await updatePresence(client);
   });
 
   client.on(Events.GuildDelete, async (guild) => {
-    delete guildStore[guild.id];
+    channelStore.forEach((storeChannel, channelId) => {
+      if (storeChannel.guildId === guild.id) channelStore.delete(channelId);
+    });
     await updatePresence(client);
   });
 
@@ -45,18 +45,6 @@ export default function registerEventHandlers(client: Client) {
       !botPermissionsInChannel.has(PermissionsBitField.Flags.SendMessages)
     )
       return;
-
-    /* eslint-disable @typescript-eslint/no-unnecessary-condition */
-    if (!guildStore[message.guildId]) {
-      guildStore[message.guildId] = {};
-    }
-    if (!guildStore[message.guildId][message.channelId]) {
-      guildStore[message.guildId][message.channelId] = new SpeakChannel(
-        message.channel,
-        cacheConfig,
-      );
-    }
-    /* eslint-enable @typescript-eslint/no-unnecessary-condition */
 
     try {
       await onMessage(message, client, cacheConfig);
