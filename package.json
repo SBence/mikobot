@@ -17,14 +17,14 @@
   },
   "homepage": "https://github.com/SBence/mikobot#readme",
   "devDependencies": {
-    "@eslint/js": "^9.11.0",
-    "@types/node": "^22.5.5",
-    "eslint": "^9.11.0",
+    "@eslint/js": "^9.11.1",
+    "@types/node": "^22.6.1",
+    "eslint": "^9.11.1",
     "eslint-config-prettier": "^9.0.0",
     "globals": "^15.9.0",
     "prettier": "^3.0.0",
     "typescript": "^5.5.4",
-    "typescript-eslint": "^8.6.0"
+    "typescript-eslint": "^8.7.0"
   },
   "dependencies": {
     "bufferutil": "^4.0.8",
