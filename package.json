@@ -18,7 +18,7 @@
   "homepage": "https://github.com/SBence/mikobot#readme",
   "devDependencies": {
     "@eslint/js": "^9.11.1",
-    "@types/node": "^22.7.2",
+    "@types/node": "^22.7.3",
     "eslint": "^9.11.1",
     "eslint-config-prettier": "^9.0.0",
     "globals": "^15.9.0",
