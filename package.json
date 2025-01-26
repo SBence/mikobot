@@ -6,8 +6,8 @@
   "scripts": {
     "start": "tsc && node dist/index.js",
     "lint": "eslint .",
-    "formatting:check": "yarn prettier --check .",
-    "formatting:apply": "yarn prettier --write ."
+    "formatting:check": "prettier --check .",
+    "formatting:apply": "prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,14 @@
     "url": "https://github.com/SBence/mikobot/issues"
   },
   "homepage": "https://github.com/SBence/mikobot#readme",
+  "dependencies": {
+    "bufferutil": "^4.0.9",
+    "discord.js": "^14.17.3",
+    "dotenv": "^16.4.7",
+    "markov-strings": "^3.0.2",
+    "utf-8-validate": "^6.0.5",
+    "zlib-sync": "^0.1.9"
+  },
   "devDependencies": {
     "@eslint/js": "^9.18.0",
     "@types/node": "^22.10.10",
@@ -26,13 +34,5 @@
     "prettier": "^3.4.2",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.21.0"
-  },
-  "dependencies": {
-    "bufferutil": "^4.0.9",
-    "discord.js": "^14.17.3",
-    "dotenv": "^16.4.7",
-    "markov-strings": "^3.0.2",
-    "utf-8-validate": "^6.0.5",
-    "zlib-sync": "^0.1.9"
   }
 }
