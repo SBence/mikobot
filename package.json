@@ -19,20 +19,20 @@
   "homepage": "https://github.com/SBence/mikobot#readme",
   "dependencies": {
     "bufferutil": "^4.0.9",
-    "discord.js": "^14.17.3",
-    "dotenv": "^16.4.7",
+    "discord.js": "^14.19.3",
+    "dotenv": "^16.5.0",
     "markov-strings": "^3.0.2",
     "utf-8-validate": "^6.0.5",
-    "zlib-sync": "^0.1.9"
+    "zlib-sync": "^0.1.10"
   },
   "devDependencies": {
-    "@eslint/js": "^9.19.0",
-    "@types/node": "^22.12.0",
-    "eslint": "^9.19.0",
-    "eslint-config-prettier": "^9.0.0",
-    "globals": "^15.14.0",
-    "prettier": "^3.4.2",
-    "typescript": "^5.7.3",
-    "typescript-eslint": "^8.22.0"
+    "@eslint/js": "^9.26.0",
+    "@types/node": "^22.15.18",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "globals": "^16.1.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.1"
   }
 }
