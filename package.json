@@ -4,7 +4,8 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "start": "tsc && node dist/index.js",
+    "start": "tsc && node build/index.js",
+    "build": "tsc",
     "lint": "eslint .",
     "formatting:check": "prettier --check .",
     "formatting:apply": "prettier --write ."

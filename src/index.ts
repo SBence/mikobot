@@ -15,9 +15,9 @@ registerEventHandlers(client);
 console.log("⏳ Logging in...");
 
 try {
-  await client.login(process.env.DISCORD_TOKEN);
+  await client.login(process.env.TOKEN);
 } catch {
   console.error(
-    '❌ Login error\nMake sure that there is a "DISCORD_TOKEN" entry with the token of the bot application in the ".env" file.\nTo check the applications in your Discord account go to the following page:\nhttps://discord.com/developers/applications',
+    '❌ Login error\nMake sure that there is a "TOKEN" entry with the token of the bot application in the ".env" file.\nTo check the applications in your Discord account go to the following page:\nhttps://discord.com/developers/applications',
   );
 }
