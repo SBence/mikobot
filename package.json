@@ -21,7 +21,7 @@
   "dependencies": {
     "bufferutil": "^4.0.9",
     "discord.js": "^14.21.0",
-    "dotenv": "^16.5.0",
+    "dotenv": "^16.6.0",
     "markov-strings": "^3.0.2",
     "utf-8-validate": "^6.0.5",
     "zlib-sync": "^0.1.10"
@@ -32,7 +32,7 @@
     "eslint": "^9.29.0",
     "eslint-config-prettier": "^10.1.5",
     "globals": "^16.2.0",
-    "prettier": "^3.6.1",
+    "prettier": "^3.6.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.35.0"
   }
