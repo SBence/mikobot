@@ -21,7 +21,7 @@
   "dependencies": {
     "bufferutil": "^4.0.9",
     "discord.js": "^14.21.0",
-    "dotenv": "^17.2.0",
+    "dotenv": "^17.2.1",
     "markov-strings": "^3.0.2",
     "utf-8-validate": "^6.0.5",
     "zlib-sync": "^0.1.10"
