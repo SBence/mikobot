@@ -21,19 +21,19 @@
   "dependencies": {
     "bufferutil": "^4.0.9",
     "discord.js": "^14.22.1",
-    "dotenv": "^17.2.2",
+    "dotenv": "^17.2.3",
     "markov-strings": "^3.0.2",
     "utf-8-validate": "^6.0.5",
     "zlib-sync": "^0.1.10"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
-    "@types/node": "^22.18.6",
+    "@types/node": "^22.18.7",
     "eslint": "^9.36.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^16.4.0",
     "prettier": "^3.6.2",
     "typescript": "^5.9.2",
-    "typescript-eslint": "^8.44.1"
+    "typescript-eslint": "^8.45.0"
   }
 }
