@@ -464,6 +464,11 @@ dotenv@^17.4.2:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-17.4.2.tgz#c07e54a746e11eba021dd9e1047ced5afdc1c034"
   integrity sha512-nI4U3TottKAcAD9LLud4Cb7b2QztQMUEfHbvhTH09bqXTxnSie8WnjPALV/WMCrJZ6UV/qHJ6L03OqO3LcdYZw==
 
+es-toolkit@^1.47.0:
+  version "1.47.0"
+  resolved "https://registry.yarnpkg.com/es-toolkit/-/es-toolkit-1.47.0.tgz#846778dac47af951f9917363ec5a3b94beeb8ddc"
+  integrity sha512-n1GuoD0WEQZMBk5tttoZSqwgyLx01oqa5XsBmCHwPyNe1S9jPBEmtR2pSgp2kJuWE3ciFZ6yRHmY4pM4C3OOkw==
+
 escape-string-regexp@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz#14ba83a5d373e3d311e5afca29cf5bfad965bf34"
@@ -724,11 +729,6 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
-lodash-es@^4.17.21:
-  version "4.17.21"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
-  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
-
 lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
@@ -749,12 +749,12 @@ magic-bytes.js@^1.13.0:
   resolved "https://registry.yarnpkg.com/magic-bytes.js/-/magic-bytes.js-1.13.0.tgz#b86cc065639368599034ec67941da39d88d7795e"
   integrity sha512-afO2mnxW7GDTXMm5/AoN1WuOcdoKhtgXjIvHmobqTD1grNplhGdv3PFOyjCVmrnOZBIT/gD/koDKpYG+0mvHcg==
 
-markov-strings@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/markov-strings/-/markov-strings-3.0.2.tgz#294b04336b55fc6a10bed3d25015e4739c5991d5"
-  integrity sha512-nTXbRVjrDY6x/xsnVky0+DlqKAru067tZy7Yar5k7Ilbg3geg3qTWzqBdK+F4LIU9mcGmBCOD9VgTdEgz70dBg==
+markov-strings@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/markov-strings/-/markov-strings-3.0.4.tgz#ef6b26692e8c4c47b390c07f02c1876013b1792f"
+  integrity sha512-KsNPlUt8jo5B3My0DHyg513ZOA9YqS5xpBpp3cjyvCm+RD/p9t+U/BTOhuWMw+O3rigcH2FdBtX9gevihjFUNg==
   dependencies:
-    lodash-es "^4.17.21"
+    es-toolkit "^1.47.0"
 
 minimatch@^10.2.2:
   version "10.2.2"
